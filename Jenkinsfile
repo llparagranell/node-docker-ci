@@ -2,11 +2,6 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Repo') {
-            steps {
-                git 'https://github.com/your-username/your-repo.git'
-            }
-        }
 
         stage('Build Docker Image') {
             steps {
@@ -25,7 +20,9 @@ pipeline {
 
         stage('Run New Container') {
             steps {
-                sh 'docker run -d -p 3000:3000 --name node-container node-app'
+                sh '''
+                docker run -d -p 3000:3000 --name node-container node-app
+                '''
             }
         }
     }
